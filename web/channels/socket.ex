@@ -1,12 +1,9 @@
-defmodule CookingQuest.UserSocket do
+defmodule CookingQuest.Socket do
   use Phoenix.Socket
 
-  ## Channels
-  # channel "room:*", CookingQuest.RoomChannel
+  channel "app:*", CookingQuest.AppChannel
 
-  ## Transports
-  transport :websocket, Phoenix.Transports.WebSocket
-  # transport :longpoll, Phoenix.Transports.LongPoll
+  transport :websocket, Phoenix.Transports.WebSocket 
 
   # Socket params are passed from the client and can
   # be used to verify and authenticate a user. After
