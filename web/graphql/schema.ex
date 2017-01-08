@@ -13,9 +13,9 @@ defmodule CookingQuest.Schema do
 end
 
 defmodule CookingQuest.UserResolver do
-  alias CookingQuest.User
+  alias CookingQuest.{User, Repo}
   
   def get(%{id: id}, _info) do
-    {:ok, %User{id: id, name: "TestUser"}}
+    {:ok, Repo.get!(User, id)}
   end
 end

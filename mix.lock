@@ -1,4 +1,5 @@
 %{"absinthe": {:hex, :absinthe, "1.2.3", "634da49aacc4c9568760cdf3fe8c400ce9368815985e366e893ea8fcbe58f405", [:mix], []},
+  "absinthe_plug": {:hex, :absinthe_plug, "1.2.0", "5cccb5ee6bb26ab7e0e9285731db1d1ac30864a7217fb1a76b6a3edb3070af4a", [:mix], [{:absinthe, "~> 1.2.0", [hex: :absinthe, optional: false]}, {:plug, "~> 1.0", [hex: :plug, optional: false]}]},
   "benchee": {:hex, :benchee, "0.3.0", "2032985a9d21a71ccbe5d6c4e78025315e8c3cc3e255f507a137995492e3f0be", [:mix], []},
   "benchfella": {:hex, :benchfella, "0.3.3", "bbde48b5fe1ef556baa7ad933008e214e050e81ddb0916350715f5759fb35c0c", [:mix], []},
   "connection": {:hex, :connection, "1.0.4", "a1cae72211f0eef17705aaededacac3eb30e6625b04a6117c1b2db6ace7d5976", [:mix], []},

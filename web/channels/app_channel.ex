@@ -5,8 +5,8 @@ defmodule CookingQuest.AppChannel do
     {:ok, socket}
   end
 
-  def handle_in("query", %{"body" => body}, socket) do 
-    result = Absinthe.run(body, CookingQuest.Schema) 
+  def handle_in("query", %{"query" => query, "variables" => variables}, socket) do 
+    result = Absinthe.run(query, CookingQuest.Schema, variables: variables) 
     {:reply, result, socket}
   end
 end

@@ -8,4 +8,6 @@ defmodule CookingQuest.Router do
   scope "/api", CookingQuest do
     pipe_through :api
   end
+
+  forward "/graphiql", Absinthe.Plug.GraphiQL, schema: CookingQuest.Schema
 end
