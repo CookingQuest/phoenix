@@ -19,7 +19,7 @@ defmodule CookingQuest.Mixfile do
   def application do
     [mod: {CookingQuest, []},
      applications: [:phoenix, :phoenix_pubsub, :cowboy, :logger,
-                    :phoenix_ecto, :postgrex, :absinthe]]
+                    :phoenix_ecto, :postgrex, :absinthe, :absinthe_ecto]]
   end
 
   # Specifies which paths to compile per environment.
@@ -37,6 +37,7 @@ defmodule CookingQuest.Mixfile do
      {:cowboy, "~> 1.0"}, 
      {:absinthe, "~> 1.2.0"},
      {:absinthe_plug, "~> 1.1"},
+     {:absinthe_ecto, git: "https://github.com/absinthe-graphql/absinthe_ecto.git"},
      {:benchfella, "~> 0.3.0"}]
   end
 
