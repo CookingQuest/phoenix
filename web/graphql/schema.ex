@@ -27,7 +27,7 @@ defmodule CookingQuest.UserResolver do
 end
 
 defmodule CookingQuest.StatsResolver do
-  alias CookingQuest.{User, Repo, Stats}
+  alias CookingQuest.{Repo, Stats}
   
   def get(%{id: id}, _info) do
     {:ok, Repo.get!(Stats, id)}

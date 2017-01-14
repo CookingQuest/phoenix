@@ -30,7 +30,7 @@ end
 defmodule CookingQuest.Stats do
   use Ecto.Schema
   import Ecto.Changeset
-  alias CookingQuest.{Repo, User}
+  alias CookingQuest.{User}
 
   schema "stats" do
     field :level, :integer
@@ -41,6 +41,6 @@ defmodule CookingQuest.Stats do
   
   def changeset(stats, params \\ %{}) do
     stats
-    |> cast(params, [:level])
+    |> cast(params, @fields)
   end
 end

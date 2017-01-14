@@ -10,7 +10,8 @@ defmodule CookingQuest.Mixfile do
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      aliases: aliases(),
-     deps: deps()]
+     deps: deps(),
+     dialyzer: [plt_add_deps: :transitive]]
   end
 
   # Configuration for the OTP application.
@@ -38,7 +39,8 @@ defmodule CookingQuest.Mixfile do
      {:absinthe, "~> 1.2.0"},
      {:absinthe_plug, "~> 1.1"},
      {:absinthe_ecto, git: "https://github.com/absinthe-graphql/absinthe_ecto.git"},
-     {:benchfella, "~> 0.3.0"}]
+     {:benchfella, "~> 0.3.0"},
+     {:dialyxir, "~> 0.3.5", only: [:dev]}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
