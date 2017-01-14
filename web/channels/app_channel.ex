@@ -3,5 +3,10 @@ defmodule CookingQuest.AppChannel do
 
   def join("app:graphql", _message, socket) do
     {:ok, socket}
-  end 
+  end
+
+  def handle_in("query", %{"query" => query, "variables" => variables}, socket) do 
+    result = Absinthe.run(query, CookingQuest.Schema, variables: variables) 
+    {:reply, result, socket}
+  end
 end
