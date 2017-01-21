@@ -1,5 +1,12 @@
 use Mix.Config
 
+
+config :cooking_quest, CookingQuest.Mailer,
+  adapter: Bamboo.SendgridAdapter,
+  api_key: "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"
+
+
+
 # For production, we configure the host to read the PORT
 # from the system environment. Therefore, you will need
 # to set PORT=80 before running your server.

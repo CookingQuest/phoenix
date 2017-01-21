@@ -20,7 +20,8 @@ defmodule CookingQuest.Mixfile do
   def application do
     [mod: {CookingQuest, []},
      applications: [:phoenix, :phoenix_pubsub, :cowboy, :logger,
-                    :phoenix_ecto, :postgrex, :absinthe, :absinthe_ecto]]
+                    :phoenix_ecto, :postgrex, :absinthe, :absinthe_ecto,
+                    :bamboo]]
   end
 
   # Specifies which paths to compile per environment.
@@ -40,7 +41,8 @@ defmodule CookingQuest.Mixfile do
      {:absinthe_plug, "~> 1.1"},
      {:absinthe_ecto, git: "https://github.com/absinthe-graphql/absinthe_ecto.git"},
      {:benchfella, "~> 0.3.0"},
-     {:dialyxir, "~> 0.3.5", only: [:dev]}]
+     {:dialyxir, "~> 0.3.5", only: [:dev]},
+     {:bamboo, "~> 0.8"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
