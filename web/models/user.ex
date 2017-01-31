@@ -1,29 +1,29 @@
 defmodule CookingQuest.User do
   use Ecto.Schema
   import Ecto.Changeset
-  alias CookingQuest.{Stats, User, Repo}
-  
-  
+  alias CookingQuest.{Stats, User, Repo, AuthToken}
+
+
   schema "users" do
     field :name, :string
+    field :email, :string
     has_one :stats, Stats
+    has_one :token, AuthToken
   end
 
-  @fields ~w(name)
-  
+  @fields ~w(name email)
+
   def changeset(user, params \\ %{}) do
     user
-    |> cast(params, @fields) 
+    |> cast(params, @fields)
+    |> validate_required([:email])
+    |> unique_constraint(:email)
   end
 
   def create(params) do
-    cs = changeset(%User{}, params) 
+    changeset(%User{}, params)
     |> put_assoc(:stats, params[:stats])
-    if cs.valid? do
-      Repo.insert(cs)
-    else
-      cs
-    end
+    |> Repo.insert
   end
 end
 
@@ -38,7 +38,7 @@ defmodule CookingQuest.Stats do
   end
 
   @fields ~w(level)
-  
+
   def changeset(stats, params \\ %{}) do
     stats
     |> cast(params, @fields)

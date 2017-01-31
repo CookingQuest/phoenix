@@ -17,3 +17,6 @@ config :cooking_quest, CookingQuest.Repo,
   database: "cooking_quest_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+config :cooking_quest, CookingQuest.Mailer,
+  adapter: Bamboo.TestAdapter

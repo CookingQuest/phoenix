@@ -1,0 +1,5 @@
+Here is your login link:
+
+<%= @link %>
+
+It is valid for 30 minutes.

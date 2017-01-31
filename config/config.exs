@@ -5,7 +5,7 @@ config :cooking_quest,
 
 
 config :cooking_quest, CookingQuest.Endpoint,
-  url: [host: "localhost"],
+  url: [host: "localhost", port: 8080],
   secret_key_base: "hD113qXoIV9/+WxCRMoJW/wQjt411dzI4B99lOq82841Gg10LEfW3Q3soREsmVsq",
   render_errors: [view: CookingQuest.ErrorView, accepts: ~w(json)],
   pubsub: [name: CookingQuest.PubSub,
