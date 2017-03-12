@@ -8,6 +8,7 @@ defmodule CookingQuest.Repo.Migrations.CreateUsers do
     end
     create table(:stats) do
       add :level, :integer
+      add :exp, :integer
       add :user_id, references(:users)
     end
     create table(:auth_tokens) do

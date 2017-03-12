@@ -1,0 +1,2 @@
+linting syntax etc https://github.com/rrrene/credo
+http://msgpack.org/index.html https://github.com/lexmag/msgpax

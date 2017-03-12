@@ -34,6 +34,7 @@ defmodule CookingQuest.Stats do
 
   schema "stats" do
     field :level, :integer
+    field :exp, :integer
     belongs_to :user, User
   end
 

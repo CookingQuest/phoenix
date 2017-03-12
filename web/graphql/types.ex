@@ -18,6 +18,7 @@ defmodule CookingQuest.Schema.Types do
   object :stats do
     field :id, :id
     field :level, :integer
+    field :exp, :integer
     field :user_id, :id
     field :user, :user, resolve: assoc(:user)
   end

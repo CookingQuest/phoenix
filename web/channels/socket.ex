@@ -1,9 +1,10 @@
 defmodule CookingQuest.Socket do
   use Phoenix.Socket
 
-  channel "app:*", CookingQuest.AppChannel
+  channel "graphql", CookingQuest.GraphqlChannel
+  channel "api", CookingQuest.ApiChannel
 
-  transport :websocket, Phoenix.Transports.WebSocket 
+  transport :websocket, Phoenix.Transports.WebSocket
 
   # Socket params are passed from the client and can
   # be used to verify and authenticate a user. After
