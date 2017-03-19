@@ -1,6 +1,6 @@
 defmodule CookingQuest.StateChannel do
   use Phoenix.Channel
-  alias CookingQuest.{GraphqlChannel}
+  alias CookingQuest.{Graphql}
 
   def join("state", _message, socket) do
     {:ok, socket}
@@ -12,13 +12,16 @@ defmodule CookingQuest.StateChannel do
   }
   """
 
-  def handle_in("get", %{"route" => _route, "user_hash" => id}, socket) do
-    result = GraphqlChannel.run(%{"query" => @query, "variables" => %{"id" => id}})
+  def handle_in("get", params, socket) do
+    result = get_state(params)
     {:reply, result, socket}
   end
 
-  def handle_in("get", %{"route" => _route}, socket) do
-    result = {:ok, %{data: %{"route" => "tutorial"}}}
-    {:reply, result, socket}
+  def get_state(%{"route" => _route, "user_hash" => id}) do
+    Graphql.run(%{"query" => @query, "variables" => %{"id" => id}})
+  end
+
+  def get_state(%{"route" => _route}) do
+    {:ok, %{data: %{"route" => "tutorial"}}}
   end
 end

@@ -1,7 +1,7 @@
 defmodule AuthTest do
   use CookingQuest.ConnCase
   use Bamboo.Test
-  alias CookingQuest.{Registration, Mails, TokenAuthentication}
+  alias CookingQuest.{Registration, Mails}
 
   test "register" do
     {:ok, user} = Registration.register("jm")
