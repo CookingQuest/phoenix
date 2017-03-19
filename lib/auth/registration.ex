@@ -8,7 +8,6 @@ defmodule CookingQuest.Registration do
 
   def register(email) do
     changeset = User.changeset(%User{}, %{email: email})
-    IO.inspect changeset
     case Repo.insert(changeset) do
       {:ok, user} ->
         TokenAuthentication.provide_token(user)

@@ -1,29 +1,17 @@
 defmodule CookingQuest.GraphqlChannel do
   use Phoenix.Channel
-  alias CookingQuest.{Graphql}
+  alias CookingQuest.{Schema}
 
   def join("graphql", _message, socket) do
     {:ok, socket}
   end
 
-  def handle_in("query", msg, socket) do
-    result = Graphql.run(msg)
+  def handle_in("run", operation, socket) do
+    result = run(operation)
     {:reply, result, socket}
   end
 
-  @query """
-  {user(id: 1) {name, stats {level, exp}}}
-  """
-
-  def handle_in("initial_state", %{"route" => _route, "user" => _user}, socket) do
-    result = Graphql.run(%{"query" => @query, "variables" => []})
-    {:reply, result, socket}
-  end
-
-  def handle_in("initial_state", %{}, socket) do
-    result = Graphql.run(%{"query" => @query, "variables" => []})
-    IO.puts('hi')
-    IO.inspect(result)
-    {:reply, result, socket}
+  def run(%{"query" => query, "variables" => variables}) do
+    Absinthe.run(query, Schema, variables: variables)
   end
 end

@@ -3,6 +3,7 @@ defmodule CookingQuest.Socket do
 
   channel "graphql", CookingQuest.GraphqlChannel
   channel "api", CookingQuest.ApiChannel
+  channel "state", CookingQuest.StateChannel
 
   transport :websocket, Phoenix.Transports.WebSocket
 
