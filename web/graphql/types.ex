@@ -10,7 +10,7 @@ defmodule CookingQuest.Schema.Types do
       resolve fn user, _, _ ->
         batch({Schema.Helpers, :by_id, Stats}, user.id, fn batch_results ->
           {:ok, Map.get(batch_results, user.id)}
-        end)
+        end) 
       end
     end
   end
@@ -18,6 +18,7 @@ defmodule CookingQuest.Schema.Types do
   object :stats do
     field :id, :id
     field :level, :integer
+    field :exp, :integer
     field :user_id, :id
     field :user, :user, resolve: assoc(:user)
   end

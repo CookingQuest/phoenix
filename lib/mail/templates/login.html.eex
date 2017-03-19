@@ -1,0 +1,5 @@
+Here is your login link:
+
+<a href="<%= @link %>">Link</a>
+
+It is valid for 30 minutes.

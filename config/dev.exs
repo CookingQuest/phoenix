@@ -1,11 +1,6 @@
 use Mix.Config
 
-# For development, we disable any cache and enable
-# debugging and code reloading.
-#
-# The watchers configuration can be used to run external
-# watchers to your application. For example, we use it
-# with brunch.io to recompile .js and .css sources.
+
 config :cooking_quest, CookingQuest.Endpoint,
   http: [port: 4000],
   debug_errors: true,
@@ -28,3 +23,6 @@ config :cooking_quest, CookingQuest.Repo,
   database: "cooking_quest_dev",
   hostname: "localhost",
   pool_size: 10
+
+config :cooking_quest, CookingQuest.Mailer,
+  adapter: Bamboo.LocalAdapter

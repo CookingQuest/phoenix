@@ -1,32 +1,45 @@
-defmodule GraphqlTest do 
+defmodule GraphqlTest do
   use CookingQuest.ChannelCase
-  alias CookingQuest.{AppChannel, Repo, User}
+  alias CookingQuest.{Graphql, User, Stats, ApiChannel}
+
+
+  setup do
+    %{id: id} = Repo.insert!(%User{name: "jm", email: "jm", stats: %Stats{level: 1, exp: 0}})
+    {:ok, [id: id]}
+  end
 
   @query """
   query GetUser($id: ID!) {
-  user(id: $id) {name}
+  user(id: $id) {name, stats {level, exp}}
   }
   """
-  
-  setup do
-    {:ok, _, socket} =
-      socket("user_id", %{some: :assign})
-      |> subscribe_and_join(AppChannel, "app:graphql")
 
-    %{id: id} = Repo.insert!(%User{name: "TestUser"})
-
-    {:ok, socket: socket, id: id}
+  test "api methods" do
+    methods = Map.keys(ApiChannel.methods())
+    assert(
+      "register" in methods and
+      "query" in methods and
+      "initial_state" in methods
+    )
   end
 
-  test "get_user", %{socket: socket, id: id} do
-    msg = %{query: @query, variables: %{id: id}}
-    ref = push(socket, "query", msg)
-    assert_reply ref, :ok, %{data: %{"user" => %{"name" => "TestUser"}}}, 250
+  test "get_user", context do
+    id = context[:id]
+
+    msg = %{"query" => @query, "variables" => %{"id" => id}}
+    assert Graphql.run(msg) == {:ok,  %{data: %{"user" => %{"name" => "jm",
+                                                            "stats" => %{"level" => 1, "exp" => 0}}}}}
   end
 
-  test "get_user_gq", %{id: id} do
-    variables = %{"id" => id} 
-    result = Absinthe.run(@query, CookingQuest.Schema, variables: variables)
-    assert result == {:ok, %{data: %{"user" => %{"name" => "TestUser"}}}}
+  test "initialState with user", context do
+    id = context[:id]
+    result = Graphql.initial_state(%{"route" => "", "user" => id})
+    assert result == {:ok, %{data: %{"user" => %{"name" => "jm",
+                                                 "stats" => %{"level" => 1, "exp" => 0}}}}}
+  end
+
+  test "initialState without user" do
+    result = Graphql.initial_state(%{"route" => ""})
+    assert result == {:ok, %{data: %{"route" => "tutorial"}}}
   end
 end
