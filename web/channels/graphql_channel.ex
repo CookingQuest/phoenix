@@ -1,6 +1,6 @@
 defmodule CookingQuest.GraphqlChannel do
   use Phoenix.Channel
-  alias CookingQuest.{Schema, Graphql}
+  alias CookingQuest.{Graphql}
 
   def join("graphql", _message, socket) do
     {:ok, socket}

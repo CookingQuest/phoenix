@@ -1,6 +1,6 @@
 defmodule CookingQuest.Schema.Types do
   use Absinthe.Schema.Notation
-  alias CookingQuest.{Schema, Stats, Repo}
+  alias CookingQuest.{Schema, User.Stats, Repo}
   use Absinthe.Ecto, repo: Repo
 
   object :user do
@@ -14,7 +14,7 @@ defmodule CookingQuest.Schema.Types do
   object :stats do
     field :id, :id
     field :level, :float do
-      resolve fn stats, _, _ -> calc_level(stats.exp) end
+      resolve {Stats, :calc_level}
     end
     field :exp, :integer
     field :user_id, :id
@@ -25,9 +25,5 @@ defmodule CookingQuest.Schema.Types do
     batch({Schema.Helpers, :by_id, Stats}, user_id, fn batch_results ->
       {:ok, Map.get(batch_results, user_id)}
     end)
-  end
-
-  defp calc_level(exp) do
-    {:ok, 0.01 * exp + 1}
   end
 end
