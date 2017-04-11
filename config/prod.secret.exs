@@ -2,7 +2,7 @@ use Mix.Config
 
 
 config :cooking_quest, CookingQuest.Endpoint,
-  secret_key_base: System.get_env("secret_key_base")
+  secret_key_base: System.get_env("SECRET_KEY_BASE")
 
 # Configure your database
 config :cooking_quest, CookingQuest.Repo,
