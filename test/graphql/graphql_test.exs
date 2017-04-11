@@ -1,10 +1,10 @@
 defmodule GraphqlTest do
-  use CookingQuest.ChannelCase
-  alias CookingQuest.{Graphql, User, Stats, ApiChannel}
+  use CookingQuest.ModelCase
+  alias CookingQuest.{UserCase, Graphql}
 
 
   setup do
-    %{id: id} = Repo.insert!(%User{name: "jm", email: "jm", stats: %Stats{level: 1, exp: 0}})
+    %{id: id} = UserCase.get_user() |> Repo.insert!
     {:ok, [id: id]}
   end
 
@@ -14,32 +14,12 @@ defmodule GraphqlTest do
   }
   """
 
-  test "api methods" do
-    methods = Map.keys(ApiChannel.methods())
-    assert(
-      "register" in methods and
-      "query" in methods and
-      "initial_state" in methods
-    )
-  end
-
   test "get_user", context do
     id = context[:id]
 
     msg = %{"query" => @query, "variables" => %{"id" => id}}
-    assert Graphql.run(msg) == {:ok,  %{data: %{"user" => %{"name" => "jm",
-                                                            "stats" => %{"level" => 1, "exp" => 0}}}}}
-  end
-
-  test "initialState with user", context do
-    id = context[:id]
-    result = Graphql.initial_state(%{"route" => "", "user" => id})
-    assert result == {:ok, %{data: %{"user" => %{"name" => "jm",
-                                                 "stats" => %{"level" => 1, "exp" => 0}}}}}
-  end
-
-  test "initialState without user" do
-    result = Graphql.initial_state(%{"route" => ""})
-    assert result == {:ok, %{data: %{"route" => "tutorial"}}}
+    assert Graphql.run(msg) == {
+      :ok,  %{data: %{"user" => %{"name" => "jm", "stats" => %{"level" => 1.0, "exp" => 0}}}}
+    }
   end
 end

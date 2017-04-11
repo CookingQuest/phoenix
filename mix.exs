@@ -32,16 +32,17 @@ defmodule CookingQuest.Mixfile do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [{:phoenix, "~> 1.2.1"},
-     {:phoenix_pubsub, "~> 1.0"},
-     {:phoenix_ecto, "~> 3.0"},
-     {:postgrex, ">= 0.0.0"}, 
-     {:cowboy, "~> 1.0"}, 
-     {:absinthe, "~> 1.2.0"},
-     {:absinthe_plug, "~> 1.1"},
+    [{:phoenix, "~> 1.2.3"},
+     {:phoenix_html, "~> 2.9.3"},
+     {:phoenix_pubsub, "~> 1.0.1"},
+     {:phoenix_ecto, "~> 3.2.3"},
+     {:postgrex, "~> 0.13.2"},
+     {:cowboy, "~> 1.1.2"},
+     {:absinthe, "~> 1.2.6"},
+     {:absinthe_plug, "~> 1.2.5"},
      {:absinthe_ecto, git: "https://github.com/absinthe-graphql/absinthe_ecto.git"},
-     {:benchfella, "~> 0.3.0"},
-     {:dialyxir, "~> 0.3.5", only: [:dev]},
+     {:benchfella, "~> 0.3.4", only: [:dev]},
+     {:dialyxir, "~> 0.5.0", only: [:dev]},
      {:bamboo, "~> 0.8"}]
   end
 
