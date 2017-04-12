@@ -12,12 +12,9 @@ config :cooking_quest, CookingQuest.Endpoint,
   http: [port: 4000],
   url: [host: "cookingquests.com", port: 80],
   server: true,
-
-  config :logger, level: :info
-
-
-config :cooking_quest, CookingQuest.Endpoint,
   secret_key_base: "${SECRET_KEY_BASE}"
+
+config :logger, level: :info
 
 # Configure your database
 config :cooking_quest, CookingQuest.Repo,
