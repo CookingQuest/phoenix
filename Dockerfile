@@ -11,16 +11,9 @@ RUN unzip repo.zip
 WORKDIR /repo/phoenix-master
   
 RUN mix do deps.get, deps.compile, compile, release --verbose --env=prod
-RUN mkdir -p /opt/myapp/log && \
-    cp rel/myapp/releases/0.1.0/myapp.tar.gz /opt/myapp/ && \
-    cd /opt/myapp && \
-    tar -xzf myapp.tar.gz && \
-    rm myapp.tar.gz && \
-    rm -rf /opt/app/* && \
-    chmod -R 777 /opt/app && \
-    chmod -R 777 /opt/myapp
-
-WORKDIR /opt/myapp
+WORKDIR /repo
+RUN tar -xzf phoenix-master/_build/prod/rel/cooking_quest/releases/0.0.1/cooking_quest.tar.gz
+RUN rm phoenix-master
 
 EXPOSE 4000
-CMD ./bin/myapp foreground  
+CMD ./bin/cooking_quest foreground
