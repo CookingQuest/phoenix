@@ -12,5 +12,5 @@ done
 set -e
 
 echo "Running migrations"  
-bin/cooking_quest rpc CookingQuest.Release.Tasks migrate  
+bin/cooking_quest rpc release_tasks migrate  
 echo "Migrations run successfully"
