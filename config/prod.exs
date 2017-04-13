@@ -19,6 +19,7 @@ config :logger, level: :info
 # Configure your database
 config :cooking_quest, CookingQuest.Repo,
   adapter: Ecto.Adapters.Postgres,
+  hostname: "postgres",
   username: "${POSTGRES_USER}",
   password: "${POSTGRES_PASSWORD}",
   database: "${POSTGRES_DB_NAME}",
