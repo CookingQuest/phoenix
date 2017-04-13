@@ -7,10 +7,10 @@ Path.join(["rel", "plugins", "*.exs"])
 |> Enum.map(&Code.eval_file(&1))
 
 use Mix.Releases.Config,
-    # This sets the default release built by `mix release`
-    default_release: :default,
-    # This sets the default environment used by `mix release`
-    default_environment: Mix.env()
+  # This sets the default release built by `mix release`
+  default_release: :default,
+  # This sets the default environment used by `mix release`
+  default_environment: Mix.env()
 
 # For a full list of config options for both releases
 # and environments, visit https://hexdocs.pm/distillery/configuration.html
@@ -31,6 +31,7 @@ environment :prod do
   set include_erts: true
   set include_src: false
   set cookie: :"Eq`>opJ2Z`ryQ1,HF=KUblJeE$tJ{4ztFKvkUP3gn,$cEgj2315VyR=|oy$)]EZ9"
+  set post_start_hook: "rel/hooks/post_start.sh"
 end
 
 # You may define one or more releases in this file.
@@ -44,4 +45,3 @@ release :cooking_quest do
     :runtime_tools
   ]
 end
-
