@@ -19,9 +19,9 @@ defmodule CookingQuest.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {CookingQuest, []},
-     applications: [:phoenix, :phoenix_pubsub, :cowboy, :logger,
+     applications: [:phoenix, :phoenix_html, :phoenix_pubsub, :cowboy, :logger,
                     :phoenix_ecto, :postgrex, :absinthe, :absinthe_ecto,
-                    :bamboo]]
+                    :absinthe_plug, :bamboo]]
   end
 
   # Specifies which paths to compile per environment.
@@ -32,18 +32,19 @@ defmodule CookingQuest.Mixfile do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [{:phoenix, "~> 1.2.3"},
-     {:phoenix_html, "~> 2.9.3"},
-     {:phoenix_pubsub, "~> 1.0.1"},
-     {:phoenix_ecto, "~> 3.2.3"},
-     {:postgrex, "~> 0.13.2"},
-     {:cowboy, "~> 1.1.2"},
-     {:absinthe, "~> 1.2.6"},
+    [{:absinthe, "~> 1.2.6"},
      {:absinthe_plug, "~> 1.2.5"},
      {:absinthe_ecto, git: "https://github.com/absinthe-graphql/absinthe_ecto.git"},
+     {:bamboo, "~> 0.8"},
+     {:cowboy, "~> 1.1.2"},
+     {:distillery, "~> 1.3.4"},
+     {:phoenix, "~> 1.2.3"},
+     {:phoenix_ecto, "~> 3.2.3"},
+     {:phoenix_html, "~> 2.9.3"},
+     {:phoenix_pubsub, "~> 1.0.1"},
+     {:postgrex, "~> 0.13.2"},
      {:benchfella, "~> 0.3.4", only: [:dev]},
-     {:dialyxir, "~> 0.5.0", only: [:dev]},
-     {:bamboo, "~> 0.8"}]
+     {:dialyxir, "~> 0.5.0", only: [:dev]}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
