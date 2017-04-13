@@ -12,5 +12,5 @@ done
 set -e
 
 echo "Running migrations"  
-bin/cooking_quest rpc Elixir.CookingQuest.Release.Tasks migrate  
+bin/cooking_quest rpc CookingQuest.Release.Tasks migrate  
 echo "Migrations run successfully"
