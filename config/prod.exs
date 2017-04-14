@@ -10,7 +10,7 @@ config :cooking_quest, CookingQuest.Mailer,
 
 config :cooking_quest, CookingQuest.Endpoint,
   http: [port: 4000],
-  url: [host: "cookingquests.com", port: 443],
+  url: [host: "cookingquests.com", port: 80],
   server: true,
   secret_key_base: "${SECRET_KEY_BASE}"
 
