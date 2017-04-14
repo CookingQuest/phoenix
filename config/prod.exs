@@ -14,7 +14,7 @@ config :cooking_quest, CookingQuest.Endpoint,
   server: true,
   secret_key_base: "${SECRET_KEY_BASE}"
 
-config :logger, level: :info
+# config :logger, level: :info
 
 # Configure your database
 config :cooking_quest, CookingQuest.Repo,
