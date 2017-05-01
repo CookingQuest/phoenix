@@ -3,7 +3,7 @@ use Mix.Config
 
 config :cooking_quest, CookingQuest.Mailer,
   adapter: Bamboo.SendgridAdapter,
-  api_key: "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"
+  api_key: "${MAILER_API_KEY}"
 
 
 
